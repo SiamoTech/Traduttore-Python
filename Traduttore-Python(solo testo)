@@ -1,0 +1,36 @@
+# Importa la classe Translator dalla libreria translate
+from translate import Translator
+
+# Definisce una funzione chiamata "traduci" che accetta tre argomenti: testo, lingua_di_partenza e lingua_di_arrivo
+def traduci(testo, lingua_di_partenza, lingua_di_arrivo):
+    # Crea un'istanza della classe Translator specificando la lingua di partenza e la lingua di arrivo
+    traduttore = Translator(from_lang=lingua_di_partenza, to_lang=lingua_di_arrivo)
+    # Utilizza il metodo "translate" dell'istanza di Translator per tradurre il testo e restituisce il risultato
+    return traduttore.translate(testo)
+
+# Questo blocco di codice viene eseguito solo se il file viene eseguito come script principale (non se viene importato come modulo)
+if __name__ == "__main__":
+    # Crea un dizionario che mappa i nomi delle lingue ai loro codici ISO 639-1 corrispondenti
+    codici_lingua = {
+        "inglese": "en",
+        "italiano": "it",
+        "francese": "fr",
+        "spagnolo": "es",
+        # Aggiungi qui altre lingue
+    }
+
+    # Chiede all'utente di inserire il testo da tradurre
+    testo = input("Inserisci il testo da tradurre: ")
+    # Chiede all'utente di inserire il nome della lingua del testo in input
+    lingua_di_partenza = input("Inserisci il nome della lingua del testo in input: ")
+    # Chiede all'utente di inserire il nome della lingua del testo in output
+    lingua_di_arrivo = input("Inserisci il nome della lingua del testo in output: ")
+
+    # Utilizza il dizionario per ottenere i codici ISO 639-1 corrispondenti alle lingue inserite dall'utente
+    codice_lingua_di_partenza = codici_lingua[lingua_di_partenza.lower()]
+    codice_lingua_di_arrivo = codici_lingua[lingua_di_arrivo.lower()]
+
+    # Chiama la funzione "traduci" per tradurre il testo utilizzando i codici ISO 639-1 delle lingue
+    testo_tradotto = traduci(testo, codice_lingua_di_partenza, codice_lingua_di_arrivo)
+    # Stampa il testo tradotto
+    print("Testo tradotto: {}".format(testo_tradotto))
